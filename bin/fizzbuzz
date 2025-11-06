@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/../src/FizzBuzz.php';
+
+use FizzBuzz\FizzBuzz;
+
+function printUsage(): void {
+    fwrite(STDERR, "Usage: fizzbuzz <N>\n");
+    fwrite(STDERR, "  N: integer >= 1\n");
+}
+
+$argv = $_SERVER['argv'] ?? [];
+
+if (count($argv) < 2) {
+    printUsage();
+    exit(1);
+}
+
+$nRaw = $argv[1];
+if (!ctype_digit($nRaw)) {
+    fwrite(STDERR, "Error: N must be an integer >= 1.\n");
+    exit(2);
+}
+
+$n = (int) $nRaw;
+
+try {
+    foreach (FizzBuzz::sequence($n) as $line) {
+        echo $line, PHP_EOL;
+    }
+} catch (InvalidArgumentException $e) {
+    fwrite(STDERR, 'Error: ' . $e->getMessage() . PHP_EOL);
+    exit(3);
+}
+
+

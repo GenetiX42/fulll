@@ -1,0 +1,25 @@
+{
+    "name": "fulll/fizzbuzz",
+    "description": "Clean and extensible FizzBuzz implementation in PHP",
+    "type": "project",
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "FizzBuzz\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FizzBuzz\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
+
